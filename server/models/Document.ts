@@ -182,18 +182,23 @@ type AdditionalFindOptions = {
       ],
     };
   },
-  withMembership: (userId: string) => ({
-    include: [
-      {
-        model: DocumentUser,
-        as: "memberships",
-        where: {
-          userId,
+  withMembership: (userId: string) => {
+    if (!userId) {
+      return {};
+    }
+    return {
+      include: [
+        {
+          model: DocumentUser,
+          as: "memberships",
+          where: {
+            userId,
+          },
+          required: false,
         },
-        required: false,
-      },
-    ],
-  }),
+      ],
+    };
+  },
 }))
 @Table({ tableName: "documents", modelName: "document" })
 @Fix
@@ -528,6 +533,9 @@ class Document extends ParanoidModel {
       },
       {
         method: ["withViews", userId],
+      },
+      {
+        method: ["withMembership", userId],
       },
     ]);
 
