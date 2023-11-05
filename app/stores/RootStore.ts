@@ -22,6 +22,7 @@ import SharesStore from "./SharesStore";
 import StarsStore from "./StarsStore";
 import SubscriptionsStore from "./SubscriptionsStore";
 import UiStore from "./UiStore";
+import UserMembershipsStore from "./UserMembershipsStore";
 import UsersStore from "./UsersStore";
 import ViewsStore from "./ViewsStore";
 import WebhookSubscriptionsStore from "./WebhookSubscriptionStore";
@@ -54,6 +55,7 @@ export default class RootStore {
   views: ViewsStore;
   fileOperations: FileOperationsStore;
   webhookSubscriptions: WebhookSubscriptionsStore;
+  userMemberships: UserMembershipsStore;
 
   constructor() {
     this.apiKeys = new ApiKeysStore(this);
@@ -82,6 +84,7 @@ export default class RootStore {
     this.views = new ViewsStore(this);
     this.fileOperations = new FileOperationsStore(this);
     this.webhookSubscriptions = new WebhookSubscriptionsStore(this);
+    this.userMemberships = new UserMembershipsStore(this);
 
     // AuthStore must be initialized last as it makes use of the other stores.
     this.auth = new AuthStore(this);

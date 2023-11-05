@@ -33,6 +33,7 @@ import stars from "./stars";
 import subscriptions from "./subscriptions";
 import teams from "./teams";
 import urls from "./urls";
+import userMemberships from "./userMemberships";
 import users from "./users";
 import views from "./views";
 
@@ -95,6 +96,7 @@ router.use("/", cron.routes());
 router.use("/", groups.routes());
 router.use("/", fileOperationsRoute.routes());
 router.use("/", urls.routes());
+router.use("/", userMemberships.routes());
 
 if (env.isDevelopment) {
   router.use("/", developer.routes());
